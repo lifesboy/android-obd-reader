@@ -48,17 +48,18 @@
     <sourceDirectory>src</sourceDirectory>
     <plugins>
       <plugin>
-        <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+        <groupId>com.simpligility.maven.plugins</groupId>
         <artifactId>android-maven-plugin</artifactId>
         <configuration>
           <androidManifestFile>${project.basedir}/AndroidManifest.xml</androidManifestFile>
           <assetsDirectory>${project.basedir}/assets</assetsDirectory>
           <resourceDirectory>${project.basedir}/res</resourceDirectory>
           <sdk>
-            <platform>8</platform>
+            <platform>29</platform>
           </sdk>
-          <deleteConflictingFiles>true</deleteConflictingFiles>
+          <failOnConflictingLayouts>true</failOnConflictingLayouts>
           <undeployBeforeDeploy>true</undeployBeforeDeploy>
+          <failOnNonStandardStructure>false</failOnNonStandardStructure>
         </configuration>
         <extensions>true</extensions>
       </plugin>
@@ -66,11 +67,11 @@
       <!-- proguard can shrink the source classes and remove unused classes 
         and more.. -->
       <plugin>
-        <groupId>com.pyx4me</groupId>
+        <groupId>com.github.wvengen</groupId>
         <artifactId>proguard-maven-plugin</artifactId>
         <executions>
           <execution>
-            <phase>process-classes</phase>
+            <phase>package</phase>
             <goals>
               <goal>proguard</goal>
             </goals>
@@ -126,13 +127,11 @@
               <pluginExecutions>
                 <pluginExecution>
                   <pluginExecutionFilter>
-                    <groupId>com.pyx4me</groupId>
+                    <groupId>com.github.wvengen</groupId>
                     <artifactId>
                       proguard-maven-plugin
                     </artifactId>
-                    <versionRange>
-                      [2.0.4,)
-                    </versionRange>
+                    <version>2.5.3</version>
                     <goals>
                       <goal>proguard</goal>
                     </goals>
@@ -183,7 +182,7 @@
             </executions>
           </plugin>
           <plugin>
-            <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+            <groupId>com.simpligility.maven.plugins</groupId>
             <artifactId>android-maven-plugin</artifactId>
             <inherited>true</inherited>
             <configuration>
